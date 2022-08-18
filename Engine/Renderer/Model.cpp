@@ -26,7 +26,7 @@ namespace neu
 		return true;
 	}
 
-	void Model::Draw(Renderer& renderer, const Vector2& position, float& angle, const Vector2& scale)
+	void Model::Draw(Renderer& renderer, const Vector2& position, float angle, const Vector2& scale)
 	{
 		//draw model
 		for (int i = 0; i < m_points.size() - 1; i++)
@@ -54,7 +54,7 @@ namespace neu
 		}
 	}
 
-	bool Model::Load(const std::string filename)
+	bool Model::Load(const std::string& filename)
 	{
 		std::string buffer;
 

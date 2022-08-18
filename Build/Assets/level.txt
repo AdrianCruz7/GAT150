@@ -19,6 +19,9 @@
             {
                "type":"PlayerComponent",
                "speed":200
+            },
+            {
+               "type":"PhysicsComponent",
             }
          ]
       }

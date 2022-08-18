@@ -6,9 +6,9 @@
 
 struct SDL_Texture;
 
-namespace neu {
-
-class Renderer;
+namespace neu
+{
+	class Renderer;
 
 	class Texture : public Resource
 	{

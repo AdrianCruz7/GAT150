@@ -12,4 +12,5 @@ namespace neu
 	{
 		renderer.Draw(m_texture, m_owner->m_Transform);
 	}
+
 }

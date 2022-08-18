@@ -237,5 +237,8 @@
     <Text Include="..\..\CSC196\Build\Assets\Player.txt">
       <Filter>Resources</Filter>
     </Text>
+    <Text Include="..\Build\Assets\level.txt">
+      <Filter>Resources</Filter>
+    </Text>
   </ItemGroup>
 </Project>

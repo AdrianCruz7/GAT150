@@ -25,37 +25,11 @@ namespace neu
 		static const Color blue;
 
 		friend std::istream& operator >> (std::istream& stream, Color& color);
+		friend std::ostream& operator << (std::ostream& stream, const Color& color);
 	};
 
+	std::istream& operator >> (std::istream& stream, Color& c);
+	std::ostream& operator << (std::ostream& stream, const Color& color);
 	
-	inline std::istream& operator >> (std::istream& stream, Color& color)
-	{
-		std::string line;
-		getline(stream, line);
-		//line = { r, g, b }
-
-		std::string str;
-
-		//red
-		str = line.substr(line.find("{") + 1, line.find(",") - line.find("{") - 1);
-		color.r = (uint8_t)(stof(str) * 255);
-		//line = g, b }
-
-		//setting line to another sub section of the string to read green and blue 
-		line = line.substr(line.find(",") + 1);
-		
-		//green
-		str = line.substr(0, line.find(","));
-		color.g = (uint8_t)(stof(str) * 255);
-		
-		//blue
-		str = line.substr(line.find(",") + 1, line.find("}") - line.find(",") + 1);
-		color.b = (uint8_t)(stof(str) * 255);
-		
-		//default alpha
-		color.a = 255;
-		
-		return stream;
-	}
 
 }

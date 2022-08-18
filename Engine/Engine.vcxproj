@@ -224,6 +224,7 @@
   <ItemGroup>
     <Text Include="..\..\CSC196\Build\Assets\Enemy.txt" />
     <Text Include="..\..\CSC196\Build\Assets\Player.txt" />
+    <Text Include="..\Build\Assets\level.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
