@@ -10,8 +10,8 @@
                300
             ],
             "scale":[
-               2,
-               2
+               8,
+               8    
             ],
             "rotation":0
          },
@@ -21,7 +21,21 @@
                "speed":200
             },
             {
+               "type":"ModelComponent",
+               "model_name":"Sprites/Model.txt"
+            },
+            {
                "type":"PhysicsComponent",
+               "m_damping":0.99
+            },
+            {
+               "type":"SpriteAnimComponent",
+               "texture_name":"Sprites/gothic-hero-run.png",
+               "fps":12,
+               "num_columns":12,
+               "num_rows":1,
+               "start_frame":1,
+               "end_frame":12
             }
          ]
       }

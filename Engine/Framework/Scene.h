@@ -1,12 +1,12 @@
 #pragma once
 #include "Actor.h"
+#include "Factory.h"
 #include "../Serialization/Serializable.h"
 #include <list>
 #include <memory>
 
 namespace neu
 {
-	//forward declaration
 	class Renderer;
 	class Game;
 
@@ -19,6 +19,9 @@ namespace neu
 
 		void Update();
 		void Draw(Renderer& renderer);
+
+		virtual bool Write(const rapidjson::Value& value) const override;
+		virtual bool Read(const rapidjson::Value& value) override;
 
 		void Add(std::unique_ptr<Actor> actor);
 

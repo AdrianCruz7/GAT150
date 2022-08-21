@@ -1,5 +1,7 @@
 #include "Actor.h"
 #include "../Components/RenderComponent.h"
+#include "../Framework/Factory.h"
+#include "../Core/Logger.h"
 
 namespace neu
 {
@@ -15,8 +17,8 @@ namespace neu
 			child->Update();
 		}
 
-		if (m_parent) m_Transform.Update(m_parent->m_Transform.matrix);
-		else m_Transform.Update();
+		if (m_parent) m_transform.Update(m_parent->m_transform.matrix);
+		else m_transform.Update();
 
 	}
 	void neu::Actor::Draw(Renderer& renderer)
@@ -34,6 +36,42 @@ namespace neu
 		{
 			child->Draw(renderer);
 		}
+	}
+
+	bool Actor::Write(const rapidjson::Value& value) const
+	{
+		return false;
+	}
+
+	bool Actor::Read(const rapidjson::Value& value)
+	{
+	
+		READ_DATA(value, tag);
+		READ_DATA(value, name);
+		
+		m_transform.Read(value["transform"]);
+		
+		if (value.HasMember("components") && value["components"].IsArray())
+		{
+			for (auto& componentValue : value["components"].GetArray())
+			{
+				std::string type;
+				READ_DATA(componentValue, type);
+				
+				auto component = Factory::Instance().Create<Component>(type);
+				if (component)
+				{
+					component->Read(componentValue);
+					AddComponent(std::move(component));
+				}
+			}
+		}
+		else
+		{
+			LOG("Error reading Actor");
+		}
+
+		return true;
 	}
 
 	void Actor::AddChild(std::unique_ptr<Actor> child)

@@ -1,4 +1,4 @@
-#include "../Engine/Source/Engine.h"
+#include "../Engine/Engine.h"
 #include <iostream>
 
 int main() 
@@ -6,33 +6,33 @@ int main()
 	neu::InitializeMemory();
 	neu::SetFilePath("../Assets");
 
-	rapidjson::Document document;
-	bool success = neu::json::Load("json.txt", document);
-	assert(success);
-
-	int i1;
-	neu::json::Get(document, "integer1", i1);
-	std::cout << i1 << std::endl;
-
-	int i2;
-	neu::json::Get(document, "integer2", i2);
-	std::cout << i2 << std::endl;
-
 	//initialize engine
 	neu::g_inputSystem.Initialize();
 	neu::g_renderer.Initialize();
 	neu::g_audioSystem.Initialize();
 	neu::g_resources.Initialize();
 
+	neu::Engine::Instance().Register();
+
 	//window
 	neu::g_renderer.CreateWindow("Test", 1200, 800);
+	neu::g_renderer.SetClearColor(neu::Color::black);
 
-	//initialize quit
+	//std::shared_ptr<neu::Texture> texture = neu::g_resources.Get<neu::Texture>("textures/player.png", &neu::g_renderer);
+	//neu::g_audioSystem.AddAudio("laser", "Audio/laser_shoot.wav");
 
-	//sprite
+	//scene
 	neu::Scene scene;
 
+	rapidjson::Document document;
+	bool success = neu::json::Load("level.txt", document);
+	assert(success);
+	scene.Read(document);
+
+
+	float angle = 0;
 	bool quit = false;
+
 	//game loop
 	while (!quit)
 	{
@@ -45,7 +45,7 @@ int main()
 		//quit with esc
 		if (neu::g_inputSystem.GetKeyDown(neu::key_escape)) quit = true;
 
-		//angle += 360.0f * neu::g_time.deltaTime;
+		angle += 360.0f * neu::g_time.deltaTime;
 		scene.Update();
 		
 		// render

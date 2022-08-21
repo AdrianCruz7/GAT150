@@ -1,18 +1,21 @@
 #pragma once
 #include "Vector2.h"
-#include "Matrix2x2.h"
 #include "Matrix3x3.h"
 #include "../Math/MathUtils.h"
-
+#include "../Serialization/Serializable.h"
 namespace neu
 {
-	struct Transform
+	struct Transform : public ISerializable
 	{
 		Vector2 position;
 		float rotation = 0.0f;
 		Vector2 scale{ 1, 1 };
 
 		Matrix3x3 matrix;
+
+		virtual bool Write(const rapidjson::Value& value) const override;
+		virtual bool Read(const rapidjson::Value& value) override;
+
 
 		void Update()
 		{

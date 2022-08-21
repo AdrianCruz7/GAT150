@@ -10,12 +10,12 @@ namespace neu
 	{
 	public:
 		Model() = default;
-		Model(const std::vector<neu::Vector2> points, const neu::Color color) :
+		Model(const std::vector<neu::Vector2> points, const neu::Color& color) :
 			m_points{ points },
 			m_color{ color }
 		{	
 		}
-		Model(const std::string filename);
+		Model(const std::string& filename);
 		
 		bool Create(std::string filename, ...) override;
 

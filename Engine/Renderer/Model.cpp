@@ -9,7 +9,7 @@
 namespace neu
 {
 
-	Model::Model(const std::string filename)
+	Model::Model(const std::string& filename)
 	{
 		Load(filename);
 		m_radius = CalculateRadius();
@@ -46,7 +46,7 @@ namespace neu
 
 		for (int i = 0; i < m_points.size() - 1; i++)
 		{
-
+			//problem line
 			neu::Vector2 p1 = mx * m_points[i];
 			neu::Vector2 p2 = mx * m_points[i + 1];
 
@@ -103,11 +103,3 @@ namespace neu
 	}
 
 }
-
-
-		//draw
-		//neu::Color color;
-		//color.r = neu::random(256);
-		//color.g = neu::random(256);
-		//color.b = neu::random(256);
-		//color.a = 255;

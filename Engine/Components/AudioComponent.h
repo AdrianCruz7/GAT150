@@ -11,6 +11,9 @@ namespace neu
 		
 		void Update() override;
 
+		virtual bool Write(const rapidjson::Value& value) const override;
+		virtual bool Read(const rapidjson::Value& value) override;
+
 		void Play();
 		void Stop();
 
@@ -18,7 +21,6 @@ namespace neu
 		std::string m_soundname;
 
 		bool playOnAwake = false;
-		float volume = 1.0f;
 		float m_pitch = 0.0f;
 		bool loop = false;
 	};

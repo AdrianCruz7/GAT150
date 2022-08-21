@@ -59,9 +59,6 @@
     <ClCompile Include="Framework\Actor.cpp">
       <Filter>Sources\Framework</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Engine.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
     <ClCompile Include="Core\Time.cpp">
       <Filter>Sources\Core</Filter>
     </ClCompile>
@@ -116,6 +113,18 @@
     <ClCompile Include="Serialization\Json.cpp">
       <Filter>Sources\Serialization</Filter>
     </ClCompile>
+    <ClCompile Include="Components\SpriteAnimComponent.cpp">
+      <Filter>Sources\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Transform.cpp">
+      <Filter>Sources\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\RenderComponent.cpp">
+      <Filter>Sources\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Memory.h">
@@ -153,9 +162,6 @@
     </ClInclude>
     <ClInclude Include="Framework\Actor.h">
       <Filter>Sources\Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Engine.h">
-      <Filter>Sources</Filter>
     </ClInclude>
     <ClInclude Include="Core\Time.h">
       <Filter>Sources\Core</Filter>
@@ -228,6 +234,15 @@
     </ClInclude>
     <ClInclude Include="Serialization\Serializable.h">
       <Filter>Sources\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Rect.h">
+      <Filter>Sources\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\SpriteAnimComponent.h">
+      <Filter>Sources\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine.h">
+      <Filter>Sources</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

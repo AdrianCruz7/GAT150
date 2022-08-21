@@ -1,51 +1,66 @@
 #include "PlayerComponent.h"
-#include "../Source/Engine.h"
+#include "Engine.h"
 #include <iostream>
 
-void neu::PlayerComponent::Update()
+namespace neu
 {
-	//update transform with input
-	Vector2 direction = Vector2::zero;
-
-	float p_speed = 100;
-
-	if(g_inputSystem.GetKeyState(key_left) == InputSystem::State::Held)
+	void neu::PlayerComponent::Update()
 	{
-		m_owner->m_Transform.rotation -= 180 * g_time.deltaTime;
-	}
+		//update transform with input
+		Vector2 direction = Vector2::zero;
 
-	if(g_inputSystem.GetKeyState(key_right) == InputSystem::State::Held)
-	{
-		m_owner->m_Transform.rotation += 180 * g_time.deltaTime;
-	}
+		float p_speed = 100;
 
-	float thrust = 0;
-	if(g_inputSystem.GetKeyState(key_up) == InputSystem::State::Held)
-	{
-		thrust = 300;
-	}
+		//movement
+		if (g_inputSystem.GetKeyState(key_left) == InputSystem::State::Held)
+		{
+			m_owner->m_transform.rotation -= 180 * g_time.deltaTime;
+		}
 
-	auto component = m_owner->GetComponent<PhysicsComponent>();
-	if (component)
-	{
-//		std::cout << m_owner->m_Transform.rotation << std::endl;
+		if (g_inputSystem.GetKeyState(key_right) == InputSystem::State::Held)
+		{
+			m_owner->m_transform.rotation += 180 * g_time.deltaTime;
+		}
 
-		Vector2 force = Vector2::Rotate({ 1, 0 }, math::DegToRad(m_owner->m_Transform.rotation)) * thrust;
-		component->ApplyForce(force);
-		
-		force = (Vector2{ 400, 300 } - m_owner->m_Transform.position).Normalized() * 1.0f;
-		component->ApplyForce(force);
-	}
+		float thrust = 0;
+		if (g_inputSystem.GetKeyState(key_up) == InputSystem::State::Held)
+		{
+			thrust = 300;
+		}
 
-	m_owner->m_Transform.position += direction * 300 * g_time.deltaTime;
-
-	if (g_inputSystem.GetKeyState(key_space) == InputSystem::State::Pressed)
-	{
-		auto component = m_owner->GetComponent<AudioComponent>();
-
+		//gravity/force
+		auto component = m_owner->GetComponent<PhysicsComponent>();
 		if (component)
 		{
-			component->Play();
+			Vector2 force = Vector2::Rotate({ 1, 0 }, math::DegToRad(m_owner->m_transform.rotation)) * thrust;
+			component->ApplyForce(force);
+
+			force = (Vector2{ 400, 300 } - m_owner->m_transform.position).Normalized() * 1.0f;
+			component->ApplyForce(force);
+		}
+
+		m_owner->m_transform.position += direction * 300 * g_time.deltaTime;
+
+		if (g_inputSystem.GetKeyState(key_space) == InputSystem::State::Pressed)
+		{
+			auto component = m_owner->GetComponent<AudioComponent>();
+
+			if (component)
+			{
+				component->Play();
+			}
 		}
 	}
+
+	bool neu::PlayerComponent::Write(const rapidjson::Value& value) const
+	{
+		return true;
+	}
+
+	bool neu::PlayerComponent::Read(const rapidjson::Value& value)
+	{
+		READ_DATA(value, speed);
+		return true;
+	}
+
 }
