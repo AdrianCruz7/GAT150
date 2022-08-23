@@ -22,12 +22,13 @@
 #include "Input/InputSystems.h"
 #include "Audio/AudioSystem.h"
 #include "Resource/ResourceManager.h"
+#include "Physics/PhysicsSystem.h"
 
 #include "Components/PlayerComponent.h"
-#include "Components/SpriteComponent.h"
 #include "Components/AudioComponent.h"
-#include "Components/PhysicsComponent.h"
+#include "Components/RBPhysicsComponent.h"
 #include "Components/ModelComponent.h"
+#include "Components/SpriteComponent.h"
 #include "Components/SpriteAnimComponent.h"
 
 #include <memory>
@@ -41,6 +42,7 @@ namespace neu
 	extern Renderer g_renderer;
 	extern AudioSystem g_audioSystem;
 	extern ResourceManager g_resources;
+	extern PhysicsSystem g_physicsSystem;
 
 	class Engine : public Singleton<Engine>
 	{

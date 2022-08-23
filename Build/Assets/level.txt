@@ -18,15 +18,16 @@
          "components":[
             {
                "type":"PlayerComponent",
-               "speed":200
+               "speed":10
             },
             {
-               "type":"ModelComponent",
-               "model_name":"Sprites/Model.txt"
+               "type":"RBPhysicsComponent",
+               "m_damping":0.99,
+               "data.gravity_scale":0
             },
             {
-               "type":"PhysicsComponent",
-               "m_damping":0.99
+               "type":"CollisionComponent",
+               "data.size":[48,48]
             },
             {
                "type":"SpriteAnimComponent",

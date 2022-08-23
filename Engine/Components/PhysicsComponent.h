@@ -10,7 +10,7 @@ namespace neu
 		PhysicsComponent() = default;
 
 		void Update() override;
-		void ApplyForce(const Vector2& force) { m_acceleration += force; };
+		virtual void ApplyForce(const Vector2& force) { m_acceleration += force; };
 
 		virtual bool Write(const rapidjson::Value& value) const override;
 		virtual bool Read(const rapidjson::Value& value) override;
@@ -19,6 +19,6 @@ namespace neu
 		Vector2 m_velocity;
 		Vector2 m_acceleration;
 
-		float m_damping = 0.9f;
+		float m_damping = 1;
 	};
 }

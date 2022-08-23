@@ -3,6 +3,14 @@
 
 namespace neu
 {
+	void Scene::Initialize()
+	{
+		for (auto& actor : m_actors)
+		{
+			actor->Initialize();
+		}
+	}
+
 	void neu::Scene::Update()
 	{
 		auto iter = m_actors.begin();
@@ -24,7 +32,7 @@ namespace neu
 			for (auto iter2 = m_actors.begin(); iter2 != m_actors.end(); iter2++)
 			{
 				if (iter1 == iter2) continue;
-
+				
 				float radius = (*iter1)->GetRadius() + (*iter2)->GetRadius();
 				float distance = (*iter1)->m_transform.position.Distance((*iter2)->m_transform.position);
 			

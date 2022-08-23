@@ -16,6 +16,9 @@ namespace neu
 		Actor() = default;
 		Actor(const Transform& transform) : m_transform{ transform } {}
 		
+		// Inherited via GameObject
+		virtual void Initialize() override;
+
 		virtual void Update() override;
 		virtual void Draw(Renderer& renderer);
 
@@ -59,7 +62,7 @@ namespace neu
 		float m_damping = 1;
 
 		std::vector<std::unique_ptr<Component>> m_components;
-		std::vector<std::unique_ptr<Actor>> m_children;
+		std::vector<std::unique_ptr<Actor>> m_children;		
 	};
 
 	template<typename T>

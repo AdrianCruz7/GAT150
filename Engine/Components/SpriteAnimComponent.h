@@ -28,6 +28,5 @@ namespace neu
 
 		Rect source;
 		std::shared_ptr<Texture> m_texture;
-
 	};
 }

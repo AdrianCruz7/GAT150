@@ -36,6 +36,9 @@
     <Filter Include="Sources\Serialization">
       <UniqueIdentifier>{1ac14bc1-bf33-4b15-8e8f-89a3bed999a3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sources\Physics">
+      <UniqueIdentifier>{c6632af1-33b8-44fc-ac2a-6dc24ec37cc1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Memory.cpp">
@@ -124,6 +127,15 @@
     </ClCompile>
     <ClCompile Include="Engine.cpp">
       <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics\PhysicsSystem.cpp">
+      <Filter>Sources\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\RBPhysicsComponent.cpp">
+      <Filter>Sources\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\CollisionComponent.cpp">
+      <Filter>Sources\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -243,6 +255,18 @@
     </ClInclude>
     <ClInclude Include="Engine.h">
       <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\PhysicsSystem.h">
+      <Filter>Sources\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\RBPhysicsComponent.h">
+      <Filter>Sources\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\Collision.h">
+      <Filter>Sources\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\CollisionComponent.h">
+      <Filter>Sources\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
