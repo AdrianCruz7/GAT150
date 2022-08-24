@@ -78,7 +78,7 @@ namespace neu
 		{
 			std::string type;
 			READ_DATA(actorValue, type); 
-			//neu::json::Get(actorValue, "type", type);
+			neu::json::Get(actorValue, "type", type);
 
 			auto actor = Factory::Instance().Create<Actor>(type);
 

@@ -137,6 +137,9 @@
     <ClCompile Include="Components\CollisionComponent.cpp">
       <Filter>Sources\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Audio\AudioChannel.cpp">
+      <Filter>Sources\Audio</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Memory.h">
@@ -267,6 +270,9 @@
     </ClInclude>
     <ClInclude Include="Components\CollisionComponent.h">
       <Filter>Sources\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Audio\AudioChannel.h">
+      <Filter>Sources\Audio</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

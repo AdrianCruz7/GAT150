@@ -5,8 +5,6 @@ namespace neu
 {
 	const float PhysicsSystem::pixelsPerUnit = 48.0f;
 
-	
-
 	void PhysicsSystem::Initialize()
 	{
 		b2Vec2 gravity{ 0, 10 };

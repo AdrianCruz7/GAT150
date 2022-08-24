@@ -1,5 +1,5 @@
 #include "SpriteAnimComponent.h"
-#include "renderer/Renderer.h"
+#include "Renderer/Renderer.h"
 #include "Framework/Actor.h"
 #include "Engine.h"
 
@@ -7,7 +7,8 @@ namespace neu
 {
     void neu::SpriteAnimComponent::Update()
     {
-        frameTimer += (int)g_time.deltaTime;
+        //convert to int
+        frameTimer += g_time.deltaTime;
         if (frameTimer >= 1.0f / fps)
         {
             frameTimer = 0;

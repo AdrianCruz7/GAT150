@@ -24,7 +24,7 @@ namespace neu
 		int end_frame = 0;
 
 		int frame = 0;
-		int frameTimer = 0;
+		float frameTimer = 0;
 
 		Rect source;
 		std::shared_ptr<Texture> m_texture;

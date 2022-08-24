@@ -16,7 +16,7 @@ int main()
 	neu::Engine::Instance().Register();
 
 	//window
-	neu::g_renderer.CreateWindow("Test", 1200, 800);
+	neu::g_renderer.CreateWindow("Test", 800, 600);
 	neu::g_renderer.SetClearColor(neu::Color::black);
 
 	//std::shared_ptr<neu::Texture> texture = neu::g_resources.Get<neu::Texture>("textures/player.png", &neu::g_renderer);
