@@ -8,7 +8,6 @@ namespace neu
 {
     Texture::~Texture()
     {
-        // !! if texture not null SDL_DestroyTexture 
         if (m_texture) SDL_DestroyTexture(m_texture);
     }
 
@@ -28,6 +27,23 @@ namespace neu
 
         // create texture (returns true/false if successful) 
         return Create(renderer, filename);
+    }
+
+    bool Texture::CreateFromSurface(SDL_Surface* surface, Renderer& renderer)
+    {
+        if (m_texture) SDL_DestroyTexture(m_texture);
+
+        m_texture = SDL_CreateTextureFromSurface(renderer.m_renderer, surface);
+
+        SDL_FreeSurface(surface);
+
+        if (m_texture == nullptr)
+        {
+            LOG(SDL_GetError());
+            return false;
+        }
+
+        return true;
     }
 
     bool Texture::Create(Renderer& renderer, const std::string& filename)

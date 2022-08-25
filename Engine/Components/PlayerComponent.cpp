@@ -51,6 +51,31 @@ namespace neu
 		}
 	}
 
+	void PlayerComponent::Initialize()
+	{
+		auto component = m_owner->GetComponent<CollisionComponent>();
+		if (component)
+		{
+			component->SetCollisionEnter(std::bind(&PlayerComponent::OnCollisionEnter, this, std::placeholders::_1));
+			component->SetCollisionEnter(std::bind(&PlayerComponent::OnCollisionExit, this, std::placeholders::_1));
+		}
+	}
+
+	void PlayerComponent::OnCollisionEnter(Actor* other)
+	{
+		if (other->GetName() == "Coin")
+		{
+			//destroy
+		}
+
+		std::cout << "player enter\n";
+	}
+
+	void PlayerComponent::OnCollisionExit(Actor* other)
+	{
+		std::cout << "player exit\n";
+	}
+
 	bool neu::PlayerComponent::Write(const rapidjson::Value& value) const
 	{
 		return true;

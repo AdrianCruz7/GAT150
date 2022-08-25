@@ -24,6 +24,7 @@
 #include "Resource/ResourceManager.h"
 #include "Physics/PhysicsSystem.h"
 
+#include "Components/TextComponent.h"
 #include "Components/PlayerComponent.h"
 #include "Components/AudioComponent.h"
 #include "Components/RBPhysicsComponent.h"

@@ -41,6 +41,8 @@ namespace neu
 		const std::string& GetName() { return tag; }
 		void SetName(const std::string& name) { this->name = name; }
 
+		
+
 		friend class Scene;
 		friend class Component;
 		friend class ModelComponent;

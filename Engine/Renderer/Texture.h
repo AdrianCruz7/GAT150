@@ -3,7 +3,7 @@
 #include "../Resource/Resource.h"
 #include <string> 
 
-
+struct SDL_Surface;
 struct SDL_Texture;
 
 namespace neu
@@ -18,6 +18,7 @@ namespace neu
 
 		bool Create(std::string filename, ...) override;
 		bool Create(Renderer& renderer, const std::string& filename);
+		bool CreateFromSurface(SDL_Surface* surface, Renderer& renderer);
 
 		Vector2 GetSize() const;
 
