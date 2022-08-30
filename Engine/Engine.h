@@ -13,28 +13,35 @@
 #include "Core/Time.h"
 #include "Core/Memory.h"
 #include "Core/File.h"
+#include "Core/Logger.h"
 
 #include "Framework/Scene.h"
 #include "Framework/Game.h"
 #include "Framework/Factory.h"
 #include "Framework/Singleton.h"
+#include "Framework/EventManager.h"
 
 #include "Input/InputSystems.h"
 #include "Audio/AudioSystem.h"
 #include "Resource/ResourceManager.h"
 #include "Physics/PhysicsSystem.h"
 
-#include "Components/TextComponent.h"
-#include "Components/PlayerComponent.h"
 #include "Components/AudioComponent.h"
-#include "Components/RBPhysicsComponent.h"
+#include "Components/CharacterComponent.h"
+#include "Components/CollisionComponent.h"
 #include "Components/ModelComponent.h"
-#include "Components/SpriteComponent.h"
+#include "Components/PhysicsComponent.h"
+#include "Components/PlayerComponent.h"
+#include "Components/RBPhysicsComponent.h"
 #include "Components/SpriteAnimComponent.h"
+#include "Components/SpriteComponent.h"
+#include "Components/TextComponent.h"
+#include "Components/TilemapComponent.h"
 
 #include <memory>
 #include <vector>
 #include <list>
+#include <variant>
 
 namespace neu
 {
@@ -44,6 +51,7 @@ namespace neu
 	extern AudioSystem g_audioSystem;
 	extern ResourceManager g_resources;
 	extern PhysicsSystem g_physicsSystem;
+	extern EventManager g_eventManager;
 
 	class Engine : public Singleton<Engine>
 	{

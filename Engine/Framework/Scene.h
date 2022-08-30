@@ -15,7 +15,10 @@ namespace neu
 	public:
 		Scene() = default;
 		Scene(Game* game) : m_game { game } {}
+		Scene(const Scene& other) {}
 		~Scene() = default;
+
+		CLASS_DECLARATION(Scene)
 
 		void Initialize() override;
 		void Update() override;
@@ -24,10 +27,17 @@ namespace neu
 		virtual bool Write(const rapidjson::Value& value) const override;
 		virtual bool Read(const rapidjson::Value& value) override;
 
+		void RemoveAll();
 		void Add(std::unique_ptr<Actor> actor);
 
 		template<typename T>
 		T* GetActor();
+
+		template<typename T = Actor>
+		T* GetActorFromName(const std::string& name);
+
+		template<typename T = Actor>
+		std::vector<T*> GetActorsFromTag(const std::string& tag);
 
 		Game* GetGame() { return m_game; }
 
@@ -46,5 +56,37 @@ namespace neu
 		}
 
 		return nullptr;
+	}
+
+	template<typename T>
+	inline T* neu::Scene::GetActorFromName(const std::string& name)
+	{
+		for (auto& actors : m_actors)
+		{		
+			if (name == actors->GetName())
+			{
+				return dynamic_cast<T*>(actors.get()); 
+			}
+		}
+		return nullptr;
+	}
+
+	template<typename T>
+	inline std::vector<T*> neu::Scene::GetActorsFromTag(const std::string& tag)
+	{
+		std::vector<T*> result;
+		for (auto& actors : m_actors)
+		{		
+			if (actors.get()->GetName())
+			{
+				T* tagActor = dynamic_cast<T*>(actors.get());
+				if (tagActor) 
+				{
+					result.push_back(tagActor);
+				}
+			}
+		
+		}
+		return result;
 	}
 }

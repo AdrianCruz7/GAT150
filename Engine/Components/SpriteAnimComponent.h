@@ -9,6 +9,9 @@ namespace neu
 	class SpriteAnimComponent : public RenderComponent
 	{
 	public:
+
+		CLASS_DECLARATION(SpriteAnimComponent)
+
 		virtual void Update() override;
 		virtual void Draw(Renderer& renderer) override;
 
@@ -26,7 +29,7 @@ namespace neu
 		int frame = 0;
 		float frameTimer = 0;
 
-		Rect source;
+		Rect& GetSource() override;
 		std::shared_ptr<Texture> m_texture;
 	};
 }

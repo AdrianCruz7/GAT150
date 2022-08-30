@@ -15,6 +15,8 @@ namespace neu
 		virtual void Initialize() override;
 		virtual void Update() override;
 		
+		CLASS_DECLARATION(CollisionComponent)
+
 		virtual void OnCollisionEnter(Actor* other) override;
 		virtual void OnCollisionExit(Actor* other) override;
 		
@@ -26,6 +28,8 @@ namespace neu
 
 	private:
 		PhysicsSystem::CollisionData data;
+		Vector2 scale_offset = Vector2{ 1, 1 }; 
+
 		functionPtr m_enterFunction;
 		functionPtr m_exitFunction;
 	};
