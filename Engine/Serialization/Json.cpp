@@ -26,7 +26,7 @@ namespace neu
 			rapidjson::IStreamWrapper istream(stream);
 			document.ParseStream(istream);
 			
-			if (document.IsObject() == false)
+			if (!document.IsObject())
 			{
 				LOG("json file cannot be read %s.", filename.c_str());
 				return false;
@@ -45,6 +45,8 @@ namespace neu
 				LOG("error reading json data %s", name.c_str());
 				return false;
 			}
+
+			data = value[name.c_str()].GetInt();
 			
 			return true;
 		}
@@ -105,10 +107,8 @@ namespace neu
 
 		bool Get(const rapidjson::Value& value, const std::string& name, Vector2& data)
 		{
-			// check if 'name' member exists 
-			if (!value.HasMember(name.c_str())) return false;
-
-			// check if data is the expected type 
+			if (!value.HasMember(name.c_str())) return false; 
+		
 			if (!value[name.c_str()].IsArray() || value[name.c_str()].Size() != 2)
 			{
 				LOG("error reading json data %s", name.c_str());
@@ -138,7 +138,6 @@ namespace neu
 			// check if 'name' member exists 
 			if (!value.HasMember(name.c_str())) return false;
 
-			// check if data is the expected type 
 			if (!value[name.c_str()].IsArray() || value[name.c_str()].Size() != 4)
 			{
 				LOG("error reading json data %s", name.c_str());

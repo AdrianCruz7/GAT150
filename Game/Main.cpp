@@ -8,12 +8,12 @@ int main()
 	neu::SetFilePath("../Assets");
 
 	//initialize engine
-	neu::g_inputSystem.Initialize();
-	neu::g_renderer.Initialize();
 	neu::g_audioSystem.Initialize();
-	neu::g_resources.Initialize();
-	neu::g_physicsSystem.Initialize();
 	neu::g_eventManager.Initialize();
+	neu::g_inputSystem.Initialize();
+	neu::g_physicsSystem.Initialize();
+	neu::g_renderer.Initialize();
+	neu::g_resources.Initialize();
 
 	neu::Engine::Instance().Register();
 
@@ -61,9 +61,9 @@ int main()
 
 	//shutdown
 	neu::g_audioSystem.Shutdown();
+	neu::g_eventManager.Shutdown();
 	neu::g_inputSystem.Shutdown();
+	neu::g_physicsSystem.Shutdown();
 	neu::g_resources.Shutdown();
 	neu::g_renderer.Shutdown();
-	neu::g_eventManager.Shutdown();
-	neu::g_physicsSystem.Shutdown();
 }
