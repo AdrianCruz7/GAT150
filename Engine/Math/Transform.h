@@ -23,6 +23,8 @@ namespace neu
 			Matrix3x3 mxRotation = Matrix3x3::CreateRotation(math::DegToRad(rotation));
 			Matrix3x3 mxTranslation = Matrix3x3::CreateTranslation(position);
 
+			std::cout << "pos: " << position.x << ", " << position.y << std::endl;
+
 			matrix = { mxTranslation * mxRotation * mxScale };
 		}
 		

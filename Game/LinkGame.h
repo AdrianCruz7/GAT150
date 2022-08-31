@@ -27,9 +27,9 @@ public:
 	void OnPlayerDead(const neu::Event& event);
 
 private:
+	//change this back to titleSceen when done
 	gameState m_gameState = gameState::titleScreen;
 	float m_stateTimer = 0;
 	int m_lives = 3;
 
-	// Inherited via INotify
 };

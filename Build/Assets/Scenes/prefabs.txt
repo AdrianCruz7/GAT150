@@ -59,7 +59,7 @@
                     "type":"EnemyComponent",
                     "speed":3,
                     "health":30,
-                    "damage":10
+                    "damage":1
                 },
                 {
                     "type":"RBPhysicsComponent",

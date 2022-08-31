@@ -57,7 +57,7 @@ void LinkGame::Update()
 		if (m_stateTimer <= 0)
 		{
 			m_gameState = gameState::startLevel;
-			m_gameState = (m_gameState > 0) ? gameState::startLevel : gameState::gameOver;
+			m_gameState = (m_lives > 0) ? gameState::startLevel : gameState::gameOver;
 		}
 		break;
 

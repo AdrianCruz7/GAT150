@@ -54,7 +54,10 @@ namespace neu
 
 	void neu::Actor::Draw(Renderer& renderer)
 	{
-		if(!active) return;
+		if (!active)
+		{
+			return;
+		}
 
 		for (auto& component : m_components)
 		{
