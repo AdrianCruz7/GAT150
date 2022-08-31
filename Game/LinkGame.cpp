@@ -40,7 +40,7 @@ void LinkGame::Update()
 		if (neu::g_inputSystem.GetKeyState(neu::key_space) == neu::InputSystem::State::Pressed)
 		{
 			m_scene->GetActorFromName("Title")->SetActive(false);
-
+		
 			m_gameState = gameState::startLevel;
 		}
 		break;
@@ -53,7 +53,7 @@ void LinkGame::Update()
 
 	case LinkGame::playerDead:
 		m_stateTimer -= neu::g_time.deltaTime;
-
+		
 		if (m_stateTimer <= 0)
 		{
 			m_gameState = gameState::startLevel;
@@ -67,7 +67,7 @@ void LinkGame::Update()
 			auto actor = neu::Factory::Instance().Create<neu::Actor>("Coin");
 			actor->m_transform.position = { neu::randomf(0, 800), 100.0f };
 			actor->Initialize();
-
+			
 			m_scene->Add(std::move(actor));
 		}
 		
@@ -76,12 +76,12 @@ void LinkGame::Update()
 			auto actor = neu::Factory::Instance().Create<neu::Actor>("Ghost");
 			actor->m_transform.position = { neu::randomf(0, 800), 100.0f };
 			actor->Initialize();
-
+			
 			m_scene->Add(std::move(actor));
 		}
-		m_lives = 3;
 		m_gameState = gameState::game;
 		break;
+
 	default:
 		break;
 	}
@@ -101,7 +101,7 @@ void LinkGame::OnAddPoints(const neu::Event& event)
 	std::cout << event.name << std::endl;
 	std::cout << GetScore() << std::endl;
 
-	std::cout << std::get<int>(event.data) << std::endl;
+	//std::cout << std::get<int>(event.data) << std::endl;
 }
 
 void LinkGame::OnPlayerDead(const neu::Event& event)

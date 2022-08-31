@@ -13,7 +13,6 @@ namespace neu
 	{
 		if (m_ttfFont)
 		{
-//			delete this;
 //			TTF_CloseFont(m_ttfFont);
 			m_ttfFont = nullptr;
 		}

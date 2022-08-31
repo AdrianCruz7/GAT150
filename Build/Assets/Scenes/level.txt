@@ -75,7 +75,7 @@
          "transform":{
             "position":[
                400,
-               300
+               100
             ],
             "scale":[
                1,
@@ -101,6 +101,10 @@
                "data.gravity_scale":1,
                "data.constrain_angle":true
             },
+                {
+                    "type":"CollisionComponent",
+                    "data.restitution":0.7
+                },
             {
                "type":"SpriteAnimComponent",
                "texture_name":"Sprites/gothic-hero-run.png",

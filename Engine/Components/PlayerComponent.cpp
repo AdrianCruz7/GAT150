@@ -7,22 +7,25 @@ namespace neu
 	void PlayerComponent::Initialize()
 	{
 		CharacterComponent::Initialize();
+		g_eventManager.Subscribe("EVENT_HEALTH", std::bind(&CharacterComponent::OnNotify, this, std::placeholders::_1), m_owner);
 	}
-
+	
 	void neu::PlayerComponent::Update()
 	{
 		Vector2 direction = Vector2::zero;
-		//movement
-		bool pause = true;
+		//bool pause = true;
 		
+		//movement
 		if (g_inputSystem.GetKeyState(key_left) == InputSystem::State::Held)
 		{
+			std::cout << "work" << std::endl;
 			//m_owner->m_transform.rotation -= 180 * g_time.deltaTime;
 			direction = Vector2::left;
 		}
 		
 		if (g_inputSystem.GetKeyState(key_right) == InputSystem::State::Held)
 		{
+			std::cout << "work" << std::endl;
 			//m_owner->m_transform.rotation += 180 * g_time.deltaTime;
 			direction = Vector2::right;
 		}
@@ -79,11 +82,11 @@ namespace neu
 			_event.name = "EVENT_DAMAGE";
 			_event.data = damage;
 			_event.receiver = other;
-
+			
 			g_eventManager.Notify(_event);
-
+			
 		}
-
+		
 		std::cout << "player enter\n";
 	}
 
@@ -112,10 +115,10 @@ namespace neu
 			if (health <= 0)
 			{
 				m_owner->SetDestroy();
-
+				
 				Event _event;
 				_event.name = "EVENT_PLAYER_DEAD";
-
+				
 				g_eventManager.Notify(_event);
 			}
 		}

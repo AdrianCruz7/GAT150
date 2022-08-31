@@ -189,7 +189,7 @@ namespace neu
 		bool Get(const rapidjson::Value& value, const std::string& name, std::vector<std::string>& data)
 		{
 			if (!value.HasMember(name.c_str())) return false;
-
+			
 			if (!value[name.c_str()].IsArray())
 			{
 				LOG("error reading json data %s", name.c_str());
@@ -207,7 +207,6 @@ namespace neu
 					LOG("error reading json data (not a string)%s", name.c_str());
 					return false;
 				}
-
 				data.push_back(array[i].GetString());
 			}
 
@@ -235,7 +234,6 @@ namespace neu
 					LOG("error reading json data (not a float)%s", name.c_str());
 					return false;
 				}
-
 				data.push_back(array[i].GetInt());
 			}
 

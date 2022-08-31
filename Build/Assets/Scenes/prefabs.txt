@@ -21,7 +21,7 @@
                     "type":"RBPhysicsComponent",
                     "damping":0.4,
                     "data.gravity_scale":1,
-                    "data.constrain_angle":false
+                    "data.constrain_angle":true
                 },
                 {
                     "type":"CollisionComponent",
@@ -65,7 +65,7 @@
                     "type":"RBPhysicsComponent",
                     "m_damping":0.4,
                     "data.gravity_scale":0,
-                    "data.constrain_angle":false
+                    "data.constrain_angle":true
                 },
                 {
                     "type":"CollisionComponent",

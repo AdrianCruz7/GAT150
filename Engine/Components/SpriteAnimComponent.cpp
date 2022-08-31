@@ -52,7 +52,7 @@ namespace neu
         Vector2 cellSize = m_texture->GetSize() / Vector2{ num_columns, num_rows };
 
         int column = (frame - 1) % num_columns;
-        int row = (frame - 1) / num_rows;
+        int row = (frame - 1) / num_columns;
 
         source.x = (int)(column * cellSize.x);
         source.y = (int)(row * cellSize.y);

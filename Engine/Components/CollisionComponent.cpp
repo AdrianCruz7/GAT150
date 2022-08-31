@@ -41,13 +41,13 @@ namespace neu
 
     void neu::CollisionComponent::OnCollisionEnter(Actor* other)
     {
-        std::cout << other->GetName() << std::endl;
+//        std::cout << other->GetName() << std::endl;
         if (m_enterFunction) m_enterFunction(other);
     }
 
     void neu::CollisionComponent::OnCollisionExit(Actor* other)
     {
-        std::cout << other->GetName() << std::endl;
+//        std::cout << other->GetName() << std::endl;
         if (m_exitFunction) m_exitFunction(other);
     }
 
@@ -64,6 +64,7 @@ namespace neu
         READ_DATA(value, data.friction);
         READ_DATA(value, data.restitution);
         READ_DATA(value, data.is_trigger);
+
         READ_DATA(value, scale_offset);
 
         return true;
