@@ -23,12 +23,12 @@ namespace neu
 
 			if (actorA->GetComponent<CollisionComponent>())
 			{
-				actorA->GetComponent<CollisionComponent>()->OnCollisionEnter(actorA);
+				actorA->GetComponent<CollisionComponent>()->OnCollisionEnter(actorB);
 			}
 			
 			if (actorB->GetComponent<CollisionComponent>())
 			{
-				actorB->GetComponent<CollisionComponent>()->OnCollisionEnter(actorB);
+				actorB->GetComponent<CollisionComponent>()->OnCollisionEnter(actorA);
 			}
 		}
 	}
@@ -51,12 +51,12 @@ namespace neu
 
 			if (actorA->GetComponent<CollisionComponent>())
 			{
-				actorA->GetComponent<CollisionComponent>()->OnCollisionExit(actorA);
+				actorA->GetComponent<CollisionComponent>()->OnCollisionExit(actorB);
 			}
 
 			if (actorB->GetComponent<CollisionComponent>())
 			{
-				actorB->GetComponent<CollisionComponent>()->OnCollisionExit(actorB);
+				actorB->GetComponent<CollisionComponent>()->OnCollisionExit(actorA);
 			}
 		}
 	}

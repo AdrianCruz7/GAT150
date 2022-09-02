@@ -37,6 +37,7 @@
 #include "Components/SpriteComponent.h"
 #include "Components/TextComponent.h"
 #include "Components/TilemapComponent.h"
+#include "Components/CameraComponent.h"
 
 #include <memory>
 #include <vector>

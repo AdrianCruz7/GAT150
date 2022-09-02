@@ -31,6 +31,12 @@ void EnemyComponent::OnCollisionEnter(neu::Actor* other)
 
         neu::g_eventManager.Notify(_event);
     }
+
+    if (other->GetTag() == "Bullet")
+    {
+        other->SetDestroy();
+        m_owner->SetDestroy();
+    }
 }
 
 void EnemyComponent::OnCollisionExit(neu::Actor* other)

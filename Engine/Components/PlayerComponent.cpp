@@ -12,41 +12,42 @@ namespace neu
 	
 	void neu::PlayerComponent::Update()
 	{
+
+		auto camera = m_owner->GetScene()->GetActorFromName("Camera");
+		if(camera)
+		{
+			camera->m_transform.position = math::Lerp(camera -> m_transform.position, m_owner->m_transform.position, 2 * g_time.deltaTime);
+		}
+
 		Vector2 direction = Vector2::zero;
 		//bool pause = true;
 		
 		//movement
 		if (g_inputSystem.GetKeyState(key_left) == InputSystem::State::Held)
 		{
-			std::cout << "work" << std::endl;
-			//m_owner->m_transform.rotation -= 180 * g_time.deltaTime;
+
 			direction = Vector2::left;
+			store = Vector2::left;
 		}
 		
 		if (g_inputSystem.GetKeyState(key_right) == InputSystem::State::Held)
 		{
-			std::cout << "work" << std::endl;
-			//m_owner->m_transform.rotation += 180 * g_time.deltaTime;
+
 			direction = Vector2::right;
+			store = Vector2::right;
 		}
 		
-		if (g_inputSystem.GetKeyState(key_up) == InputSystem::State::Held)
+		if (m_groundCount > 0 && g_inputSystem.GetKeyState(key_up) == InputSystem::State::Held)
 		{
+			std::cout << "Jump" << std::endl;
+			
 			auto component = m_owner->GetComponent<PhysicsComponent>();
 			if (component)
 			{
-				component->ApplyForce(Vector2::up * speed);
+				component->ApplyForce(Vector2::up * jump);
 			}
 		}
-		
-		Vector2 velocity;
-		auto component = m_owner->GetComponent<PhysicsComponent>();
-		if (component)
-		{
-			component->ApplyForce(direction * speed);
-			velocity = component->m_velocity;
-		}
-		
+
 		if (g_inputSystem.GetKeyState(key_space) == InputSystem::State::Pressed)
 		{
 			auto component = m_owner->GetComponent<AudioComponent>();
@@ -55,23 +56,76 @@ namespace neu
 				component->Play();
 			}
 		}
-		
-		auto renderComponent = m_owner->GetComponent<RenderComponent>();
-		if (renderComponent)
+
+		if (g_inputSystem.GetKeyState(key_down) == InputSystem::State::Pressed)
 		{
-			if (velocity.x != 0) renderComponent->SetFlipHorizontal(velocity.x < 0);
+			auto actor = neu::Factory::Instance().Create<neu::Actor>("Bullet");
+			actor->m_transform.position = m_owner->m_transform.position;
+			actor->Initialize();
+
+			auto physics = actor->GetComponent<PhysicsComponent>();
+			Vector2 force = store * 100;
+
+			actor->lifespan = 10;
+			
+			if (physics) physics->ApplyForce(force);
+			m_owner->GetScene()->Add(std::move(actor));
+
+			auto component = m_owner->GetComponent<AudioComponent>();
+			if (component)
+			{
+				component->Play();
+			}
+
+
 		}
+
+		Vector2 velocity;
+		auto component = m_owner->GetComponent<PhysicsComponent>();
+		if (component)
+		{
+			// if in the air (m_groundCount == 0) then reduce force 
+			float multiplier = (m_groundCount > 0) ? 1 : 0.2f;
+
+			component->ApplyForce(direction * speed * multiplier);
+			velocity = component->m_velocity;
+		}
+		
+		auto animComponent = m_owner->GetComponent<SpriteAnimComponent>();
+		if (animComponent)
+		{
+			if (velocity.x != 0) animComponent->SetFlipHorizontal(velocity.x < 0);
+			if (std::fabs(velocity.x) > 0)
+			{
+				animComponent->SetSequence("run");
+			}
+			else
+			{
+				animComponent->SetSequence("idle");
+			}
+		}
+		m_owner->m_transform.position += direction * 300 * g_time.deltaTime;
+
 	}
 
 
 	void PlayerComponent::OnCollisionEnter(Actor* other)
 	{
+		std::cout << other->GetName() << std::endl;
+		std::cout << other->GetTag() << std::endl;
+
+		if (other->GetTag() == "Ground")
+		{
+			m_groundCount++;
+		}
+
 		if (other->GetName() == "Coin")
 		{
 			Event _event;
 			_event.name = "EVENT_ADD_POINTS";
 			_event.data = 100;
 			
+			std::cout << "touch" << std::endl;
 			g_eventManager.Notify(_event);
 			other->SetDestroy();
 		}
@@ -92,6 +146,11 @@ namespace neu
 
 	void PlayerComponent::OnCollisionExit(Actor* other)
 	{
+		if (other->GetTag() == "Ground")
+		{
+			m_groundCount--;
+		}
+
 		std::cout << "player exit\n";
 	}
 

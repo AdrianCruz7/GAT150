@@ -71,10 +71,10 @@ void LinkGame::Update()
 			m_scene->Add(std::move(actor));
 		}
 		
-		for (int i = 0; i < 3; i++)
+		for (int i = 0; i < 20; i++)
 		{
 			auto actor = neu::Factory::Instance().Create<neu::Actor>("Ghost");
-			actor->m_transform.position = { neu::randomf(0, 800), 100.0f };
+			actor->m_transform.position = { neu::randomf(0, 3000), 100.0f };
 			actor->Initialize();
 			
 			m_scene->Add(std::move(actor));

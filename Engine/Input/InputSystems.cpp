@@ -11,9 +11,13 @@ namespace neu
 	const uint32_t key_left = SDL_SCANCODE_LEFT;
 	const uint32_t key_right = SDL_SCANCODE_RIGHT;
 	const uint32_t key_escape = SDL_SCANCODE_ESCAPE;
+	const uint32_t key_q = SDL_SCANCODE_Q;
+	const uint32_t key_e = SDL_SCANCODE_E;
+
 	const uint32_t button_left = 0;
 	const uint32_t button_middle = 1;
 	const uint32_t button_right = 2;
+
 
 	void neu::InputSystem::Initialize()
 	{
